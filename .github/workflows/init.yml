@@ -14,8 +14,14 @@ jobs:
 
     - uses: fwilhe2/bump-version@step-summary
       id: bump
-    - run: echo ${{ steps.bump.outputs.newVersion }}
 
-    - uses: actions/create-release@v1
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.bump.outputs.newVersion }}
+        release_name: Release ${{ steps.bump.outputs.newVersion }}
+        draft: false
+        prerelease: false
