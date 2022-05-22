@@ -12,7 +12,7 @@ jobs:
       with:
         milliseconds: 100
 
-    - uses: fwilhe2/bump-version@bump-version
+    - uses: fwilhe2/bump-version@step-summary
       id: bump
     - run: echo ${{ steps.bump.outputs.newVersion }}
 
